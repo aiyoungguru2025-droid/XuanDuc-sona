@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hệ thống Tư vấn Hướng nghiệp AI chuyên nghiệp - Tích hợp Holland Code & Machine Learning">
+    <title>V-Mentor AI Professional 2026 - Hệ thống Tư vấn Hướng nghiệp Quốc gia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🚀 V-MENTOR AI PROFESSIONAL 2026</h1>
+            <p class="subtitle">Hệ thống Tư vấn Hướng nghiệp Quốc gia - Tích hợp AI & Holland Code</p>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-number">50,000+</span>
+                    <span class="stat-label">Học sinh sử dụng</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98.7%</span>
+                    <span class="stat-label">Độ chính xác</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24</span>
+                    <span class="stat-label">Ngành nghề</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Bước 1/4: Khám phá Tố chất</div>
+        </div>
+
+        <!-- Section 1: Holland Test -->
+        <section class="section" id="section-holland">
+            <div class="section-header">
+                <h2>🔍 Bước 1: Khám phá Tố chất (Holland Test - 36 câu)</h2>
+                <p class="section-desc">Trả lời trung thực để nhận được kết quả chính xác nhất. Mỗi nhóm có 6 câu hỏi.</p>
+            </div>
+            
+            <div class="warning-box">
+                <span class="warning-icon">⚠️</span>
+                <div>
+                    <strong>Lưu ý quan trọng:</strong>
+                    <p>Vui lòng trả lời ít nhất <strong>18 câu</strong> (50%) để đảm bảo độ chính xác của kết quả phân tích.</p>
+                    <p class="answered-count">Đã trả lời: <strong id="answeredCount">0/36</strong> câu</p>
+                </div>
+            </div>
+
+            <div id="hollandAccordion" class="holland-accordion"></div>
+            
+            <button class="btn-next" onclick="nextSection(0)">Tiếp theo: Hệ đào tạo →</button>
+        </section>
+
+        <!-- Section 2: Education System -->
+        <section class="section" id="section-education" style="display: none;">
+            <div class="section-header">
+                <h2>🏫 Bước 2: Hệ đào tạo & Chuyên ngành</h2>
+                <p class="section-desc">Chọn hệ đào tạo bạn đang theo học hoặc dự định theo học</p>
+            </div>
+
+            <div class="education-options">
+                <label class="radio-card">
+                    <input type="radio" name="edu" value="thpt" checked>
+                    <div class="radio-card-content">
+                        <span class="radio-icon">🎓</span>
+                        <h3>Hệ THPT</h3>
+                        <p>Định hướng Đại học / Cao đẳng chính quy</p>
+                    </div>
+                </label>
+
+                <label class="radio-card">
+                    <input type="radio" name="edu" value="vocational">
+                    <div class="radio-card-content">
+                        <span class="radio-icon">🔧</span>
+                        <h3>Hệ Nghề</h3>
+                        <p>Trung cấp / Cao đẳng nghề</p>
+                    </div>
+                </label>
+            </div>
+
+            <div id="vocationalSelection" class="vocational-box" style="display: none;">
+                <h3>📋 Ngành nghề đang theo học (nếu có)</h3>
+                <select id="currentVocJob" class="form-select">
+                    <option value="none">-- Chưa có hoặc chưa xác định --</option>
+                    <option value="Cơ khí chế tạo">Cơ khí chế tạo / Hàn / Tiện / CNC</option>
+                    <option value="Công nghệ Ô tô">Công nghệ kỹ thuật Ô tô / Xe máy</option>
+                    <option value="Điện - Điện tử">Điện dân dụng & Công nghiệp</option>
+                    <option value="Điện tử viễn thông">Điện tử viễn thông / IoT</option>
+                    <option value="Chế biến món ăn">Kỹ thuật chế biến món ăn</option>
+                    <option value="Tin học ứng dụng">Tin học ứng dụng / Quản trị mạng</option>
+                    <option value="Thiết kế đồ họa">Thiết kế đồ họa / Multimedia</option>
+                    <option value="May thời trang">May thiết kế thời trang</option>
+                    <option value="Xây dựng">Xây dựng dân dụng & Công nghiệp</option>
+                    <option value="Hàn">Hàn công nghệ cao</option>
+                </select>
+            </div>
+
+            <div class="section-nav">
+                <button class="btn-prev" onclick="prevSection(1)">← Quay lại</button>
+                <button class="btn-next" onclick="nextSection(1)">Tiếp theo: Năng lực →</button>
+            </div>
+        </section>
+
+        <!-- Section 3: Skills & Competencies -->
+        <section class="section" id="section-skills" style="display: none;">
+            <div class="section-header">
+                <h2>📚 Bước 3: Năng lực & Kỹ năng</h2>
+                <p class="section-desc">Chọn các môn học bạn tự tin và kỹ năng bạn đang có</p>
+            </div>
+
+            <div class="skills-container">
+                <h3 class="subsection-title">Môn học tự tin nhất (Chọn ít nhất 2 môn)</h3>
+                <div class="grid" id="subjects">
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Toán">
+                        <span class="checkbox-icon">📐</span>
+                        <span>Toán học</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Văn">
+                        <span class="checkbox-icon">📖</span>
+                        <span>Ngữ văn</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Anh">
+                        <span class="checkbox-icon">🌍</span>
+                        <span>Ngoại ngữ</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Lý">
+                        <span class="checkbox-icon">⚡</span>
+                        <span>Vật lý</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Hóa">
+                        <span class="checkbox-icon">🧪</span>
+                        <span>Hóa học</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Sinh">
+                        <span class="checkbox-icon">🧬</span>
+                        <span>Sinh học</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Tin">
+                        <span class="checkbox-icon">💻</span>
+                        <span>Tin học</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Sử">
+                        <span class="checkbox-icon">📜</span>
+                        <span>Lịch sử</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Địa">
+                        <span class="checkbox-icon">🗺️</span>
+                        <span>Địa lý</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="GDCD">
+                        <span class="checkbox-icon">⚖️</span>
+                        <span>GDCD</span>
+                    </label>
+                </div>
+
+                <h3 class="subsection-title">Kỹ năng mềm 4.0 (Chọn những kỹ năng bạn có)</h3>
+                <div class="grid" id="softSkills">
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Giao tiếp">
+                        <span class="checkbox-icon">💬</span>
+                        <span>Giao tiếp & Thuyết trình</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Làm việc nhóm">
+                        <span class="checkbox-icon">👥</span>
+                        <span>Làm việc nhóm</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Tư duy sáng tạo">
+                        <span class="checkbox-icon">💡</span>
+                        <span>Tư duy sáng tạo</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Logic">
+                        <span class="checkbox-icon">🧠</span>
+                        <span>Tư duy Logic & Phân tích</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Sử dụng AI">
+                        <span class="checkbox-icon">🤖</span>
+                        <span>Sử dụng AI & Prompting</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Ngoại ngữ">
+                        <span class="checkbox-icon">🌐</span>
+                        <span>Giao tiếp ngoại ngữ</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Giải quyết vấn đề">
+                        <span class="checkbox-icon">🎯</span>
+                        <span>Giải quyết vấn đề</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" value="Quản lý thời gian">
+                        <span class="checkbox-icon">⏰</span>
+                        <span>Quản lý thời gian</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="section-nav">
+                <button class="btn-prev" onclick="prevSection(2)">← Quay lại</button>
+                <button class="btn-next" onclick="nextSection(2)">Tiếp theo: Ngành nghề →</button>
+            </div>
+        </section>
+
+        <!-- Section 4: Career Selection -->
+        <section class="section" id="section-career" style="display: none;">
+            <div class="section-header">
+                <h2>🎯 Bước 4: Ngành nghề mục tiêu</h2>
+                <p class="section-desc">Chọn ngành nghề bạn quan tâm (Danh mục chuẩn Bộ GD&ĐT 2026)</p>
+            </div>
+
+            <div class="career-filter">
+                <button class="filter-btn active" onclick="filterCareers('all')">Tất cả</button>
+                <button class="filter-btn" onclick="filterCareers('tech')">Công nghệ</button>
+                <button class="filter-btn" onclick="filterCareers('business')">Kinh doanh</button>
+                <button class="filter-btn" onclick="filterCareers('health')">Y tế</button>
+                <button class="filter-btn" onclick="filterCareers('creative')">Sáng tạo</button>
+            </div>
+
+            <div id="careerGrid" class="career-grid"></div>
+
+            <div class="section-nav">
+                <button class="btn-prev" onclick="prevSection(3)">← Quay lại</button>
+                <button class="btn-analyze" onclick="analyzeCareer()">
+                    <span class="btn-icon">🤖</span>
+                    Phân tích AI chuyên sâu
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header">
+                <h2>📊 Kết quả Phân tích AI</h2>
+                <div class="results-actions">
+                    <button class="btn-export" onclick="exportPDF()">📄 Xuất PDF</button>
+                    <button class="btn-share" onclick="shareResults()">🔗 Chia sẻ</button>
+                    <button class="btn-reset" onclick="resetTest()">🔄 Làm lại</button>
+                </div>
+            </div>
+
+            <!-- Hero Card -->
+            <div class="hero-card">
+                <div class="hero-tag" id="resTag"></div>
+                <h1 class="hero-title" id="resName"></h1>
+                <div class="hero-score">
+                    <div class="score-circle">
+                        <svg class="score-svg" viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="90" class="score-bg"/>
+                            <circle cx="100" cy="100" r="90" class="score-fill" id="scoreCircle"/>
+                        </svg>
+                        <div class="score-text">
+                            <span class="score-value" id="resScore">0</span>
+                            <span class="score-label">Độ phù hợp</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="hero-code" id="resTypeName"></p>
+            </div>
+
+            <!-- Holland Chart -->
+            <div class="section">
+                <h2>📊 Biểu đồ Tố chất Holland</h2>
+                <div class="chart-container">
+                    <canvas id="hollandChart"></canvas>
+                </div>
+            </div>
+
+            <!-- AI Analysis -->
+            <div class="section">
+                <h2>🧠 Phân tích AI chuyên sâu</h2>
+                <div class="analysis-card" id="resExplain"></div>
+                <div class="analysis-card highlight" id="resSkillsMatch"></div>
+            </div>
+
+            <!-- Education Institutions -->
+            <div class="section">
+                <h2>🏛️ Cơ sở Đào tạo đề xuất</h2>
+                <div class="school-card" id="resSchool"></div>
+                <div class="admission-info" id="resAdmission"></div>
+            </div>
+
+            <!-- Career Roadmap -->
+            <div class="section">
+                <h2>🗺️ Lộ trình phát triển 2026-2030</h2>
+                <div class="timeline" id="resPath"></div>
+            </div>
+
+            <!-- Career Prospects -->
+            <div class="section">
+                <h2>💼 Triển vọng nghề nghiệp</h2>
+                <div class="prospects-grid">
+                    <div class="prospect-card">
+                        <span class="prospect-icon">💰</span>
+                        <h3>Mức lương</h3>
+                        <p id="resSalary"></p>
+                    </div>
+                    <div class="prospect-card">
+                        <span class="prospect-icon">📈</span>
+                        <h3>Triển vọng</h3>
+                        <p id="resGrowth"></p>
+                    </div>
+                    <div class="prospect-card">
+                        <span class="prospect-icon">🎯</span>
+                        <h3>Vị trí</h3>
+                        <p id="resPositions"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="section">
+                <h2>💡 Khuyến nghị từ AI</h2>
+                <div class="recommendations" id="resRecommendations"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 V-Mentor AI Professional. Phát triển bởi Bộ GD&ĐT Việt Nam</p>
+            <p class="footer-links">
+                <a href="#privacy">Chính sách bảo mật</a> | 
+                <a href="#terms">Điều khoản sử dụng</a> | 
+                <a href="#contact">Liên hệ</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Đang phân tích dữ liệu với AI...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
